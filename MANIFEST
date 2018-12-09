@@ -2,4 +2,3 @@ bin/makedist
 MANIFEST
 Makefile.PL
 doc/makedist.conf
-extra/

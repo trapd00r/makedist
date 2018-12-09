@@ -2,6 +2,8 @@
 
 # makedist - make cpan distribution
 
+![makedistscreenshot](/doc/makedist.png)
+
 # USAGE
 
     makedist [OPTIONS]
