@@ -27,9 +27,11 @@ use Getopt::Long;
 use Module::Extract::VERSION;
 use File::Find::Rule;
 
-my $opt_verbose = 0;
+my $opt_verbose  = 0;
+my $opt_noconfig = 0;
 
 GetOptions(
+  'noconfig'  => \$opt_noconfig,
   'v|verbose' => \$opt_verbose,
   'h|help'    => \&usage,
 );
@@ -42,7 +44,7 @@ my @files_in_dist;
 # load config file
 our $command_on_success;
 our $finished_product;
-config_init();
+config_init() unless $opt_noconfig;
 
 
 
@@ -231,6 +233,8 @@ An example configuration file is provided with this distribution.
 
 
 =head1 OPTIONS
+
+       --noconfig skip config file
 
     -v, --verbose explain what is being done
     -h, --help    show this help and exit
