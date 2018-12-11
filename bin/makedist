@@ -37,8 +37,8 @@ GetOptions(
 );
 #>
 
-
 my $MANIFEST = './MANIFEST';
+
 my @files_in_dist;
 
 # load config file
@@ -47,14 +47,12 @@ our $finished_product;
 config_init() unless $opt_noconfig;
 
 
-
-
 # First we need to make sure that all files that's listed in the MANIFEST
 # actualy exists.
 verify_manifest();
 
 # File-LsColor-0.308.tar.gz
-# makedist-0.002.tar.gz XXX
+# makedist-0.002.tar.gz
 my $tarball = build_filename();
 
 
@@ -63,6 +61,7 @@ if($? == 0) {
   printf("- Distribution created: %s\n", ls_color($tarball)) if $opt_verbose;
 
   # all good, execute code from config if defined
+  # let the config have the value of $tarball as a variable
   $finished_product = $tarball;
   if(defined($command_on_success)) {
     $command_on_success->();
@@ -154,8 +153,11 @@ sub config_init { # XXX
   if(-f "$ENV{XDG_CONFIG_HOME}/makedist/makedist.conf") {
     $config = "$ENV{XDG_CONFIG_HOME}/makedist/makedist.conf";
   }
+  elsif(-f "$HOME/.makedist.conf") {
+    $config = "$HOME/.makedist.conf";
+  }
   else {
-    print "no config found.\n";
+    print "makedist: no configuratino file found.\n";
   }
   require($config);
   warn "$@" if $@;
@@ -207,8 +209,13 @@ directory.
 
 =head1 CONFIGURATION
 
-Various options can be set in the makedist.conf configuration file, located in
-$XDG_CONFIG_HOME/makedist/makedist.conf.
+makedist looks for a configuration file in the following locations, in
+order of precedence:
+
+  $XDG_CONFIG_HOME/makedist/makedist.conf
+  $HOME/.makedist.conf
+
+Various options can be set in the makedist.conf configuration file.
 
 By default, two variables can be accessed and modified in the
 configuration file:
@@ -234,7 +241,7 @@ An example configuration file is provided with this distribution.
 
 =head1 OPTIONS
 
-       --noconfig skip config file
+        --noconfig skip config file
 
     -v, --verbose explain what is being done
     -h, --help    show this help and exit
