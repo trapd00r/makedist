@@ -153,8 +153,8 @@ sub config_init { # XXX
   if(-f "$ENV{XDG_CONFIG_HOME}/makedist/makedist.conf") {
     $config = "$ENV{XDG_CONFIG_HOME}/makedist/makedist.conf";
   }
-  elsif(-f "$HOME/.makedist.conf") {
-    $config = "$HOME/.makedist.conf";
+  elsif(-f "$ENV{HOME}/.makedist.conf") {
+    $config = "$ENV{HOME}/.makedist.conf";
   }
   else {
     print "makedist: no configuratino file found.\n";
