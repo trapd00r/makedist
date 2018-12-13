@@ -83,6 +83,9 @@ sub build_filename { #<
     $file = (glob('./bin/*'))[0];
   }
 
+  # no lib/**/*.pm and no bin/*, rip :(
+  die "Can not find any suitable files!\n" if not defined $file;
+
   printf("- Getting \$VERSION from %s...\n", ls_color($file)) if $opt_verbose;
   my $dist    = get_package_name($file);
 
@@ -106,7 +109,7 @@ sub get_package_name { #<
 
     # package File::LsColor;
     # XXX Fix regex, this isn't good
-    if($_ =~ m/^package\s+(.+);$/) {
+    if($_ =~ m/^package\s+(.+);/) {
       $package = $1;
       $package =~ s/::/-/g;
       last;
