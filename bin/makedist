@@ -52,7 +52,7 @@ config_init() unless $opt_noconfig;
 verify_manifest();
 
 # File-LsColor-0.308.tar.gz
-# makedist-0.002.tar.gz
+# App-makedist-0.002.tar.gz
 my $tarball = build_filename();
 
 
@@ -86,8 +86,8 @@ sub build_filename { #<
   # no lib/**/*.pm and no bin/*, rip :(
   die "Can not find any suitable files!\n" if not defined $file;
 
-  printf("- Getting \$VERSION from %s...\n", ls_color(basename($file))) if $opt_verbose;
-  my $dist    = get_package_name($file);
+  printf("- Getting \$VERSION from %s...\n",ls_color(basename($file))) if $opt_verbose;
+  my $dist = get_package_name($file);
 
   printf("- Getting distribution name from %s...\n", ls_color(basename($file))) if $opt_verbose;
   my $version = scalar Module::Extract::VERSION->parse_version_safely($file);
@@ -116,8 +116,12 @@ sub get_package_name { #<
     }
   }
 
-  # we use the basename of the current working directory if we can't figure out
-  # a package name.
+  # if we can't figure out a package name, the dist probably isn't a perl
+  # module, so we use the basename of the current working directory and apply the
+  # App- prefix
+
+  # File-LsColor-0.132.tar.gz
+  # App-makedist-0.012.tar.gz
   return (defined $package ? $package : 'App-' . basename(getcwd()));
 }
 #>
@@ -203,7 +207,7 @@ file found, and the package name must follow this convention:
 If extraction fails, we use the basename of the current working
 directory as a distribution name:
 
-    ~/dev/File-LsColor  => File-LsColor
+    ~/dev/makedist  => App-makedist
 
 Version number is extracted from a perl module file if it exists, else
 an App:: distribution is assumed and version is extracted from the bin/
@@ -239,7 +243,6 @@ The author uses the $command_on_success coderef like this:
     }
 
 An example configuration file is provided with this distribution.
-
 
 
 =head1 OPTIONS
@@ -281,4 +284,3 @@ it under the same terms as Perl itself.
 L<~/|http://japh.se>
 
 =cut
-
