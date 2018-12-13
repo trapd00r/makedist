@@ -7,7 +7,7 @@ use autodie  qw(:all);
 
 #< init
 
-$VERSION = '0.011';
+$VERSION = '0.012';
 
 sub usage {
   pod2usage(
@@ -86,10 +86,10 @@ sub build_filename { #<
   # no lib/**/*.pm and no bin/*, rip :(
   die "Can not find any suitable files!\n" if not defined $file;
 
-  printf("- Getting \$VERSION from %s...\n", ls_color($file)) if $opt_verbose;
+  printf("- Getting \$VERSION from %s...\n", ls_color(basename($file))) if $opt_verbose;
   my $dist    = get_package_name($file);
 
-  printf("- Getting distribution name from %s...\n", ls_color($file)) if $opt_verbose;
+  printf("- Getting distribution name from %s...\n", ls_color(basename($file))) if $opt_verbose;
   my $version = scalar Module::Extract::VERSION->parse_version_safely($file);
 
   printf("  Looks like %s %s\n", bold(fg(214, $dist)), bold($version)) if $opt_verbose;
