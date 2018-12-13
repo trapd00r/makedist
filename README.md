@@ -4,6 +4,7 @@
 
 ![makedistscreenshot](/doc/makedist.png)
 
+
 # USAGE
 
     makedist [OPTIONS]
@@ -23,7 +24,7 @@ file found, and the package name must follow this convention:
 If extraction fails, we use the basename of the current working
 directory as a distribution name:
 
-    ~/dev/File-LsColor  => File-LsColor
+    ~/dev/makedist  => App-makedist
 
 Version number is extracted from a perl module file if it exists, else
 an App:: distribution is assumed and version is extracted from the bin/
@@ -31,8 +32,13 @@ directory.
 
 # CONFIGURATION
 
-Various options can be set in the makedist.conf configuration file, located in
-$XDG\_CONFIG\_HOME/makedist/makedist.conf.
+makedist looks for a configuration file in the following locations, in
+order of precedence:
+
+    $XDG_CONFIG_HOME/makedist/makedist.conf
+    $HOME/.makedist.conf
+
+Various options can be set in the makedist.conf configuration file.
 
 By default, two variables can be accessed and modified in the
 configuration file:
@@ -55,6 +61,8 @@ The author uses the $command\_on\_success coderef like this:
 An example configuration file is provided with this distribution.
 
 # OPTIONS
+
+        --noconfig skip config file
 
     -v, --verbose explain what is being done
     -h, --help    show this help and exit
@@ -89,3 +97,4 @@ it under the same terms as Perl itself.
 # SEE ALSO
 
 [~/](http://japh.se)
+
