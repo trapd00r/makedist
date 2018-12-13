@@ -48,7 +48,7 @@ config_init() unless $opt_noconfig;
 
 
 # First we need to make sure that all files that's listed in the MANIFEST
-# actualy exists.
+# actually exists.
 verify_manifest();
 
 # File-LsColor-0.308.tar.gz
