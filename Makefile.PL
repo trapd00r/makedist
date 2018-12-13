@@ -10,21 +10,25 @@ WriteMakefile1(
     },
   },
 
-  NAME                    => q{makedist},
-  AUTHOR                  => q{Magnus Woldrich <m@japh.se>},
-  ABSTRACT                => q{automake a distribution for upload to cpan},
-  VERSION_FROM            => q{bin/makedist},
-  LICENSE                 => q{perl},
-  EXE_FILES               => [
+  NAME                         => q{makedist},
+  AUTHOR                       => q{Magnus Woldrich <m@japh.se>},
+  ABSTRACT                     => q{automake a distribution for upload to cpan},
+  VERSION_FROM                 => q{bin/makedist},
+  LICENSE                      => q{perl},
+  EXE_FILES                    => [
     glob("bin/*"),
   ],
-  PREREQ_PM               => {
-    'Term::ExtendedColor' => '0',
-    'File::LsColor'       => '0',
+  PREREQ_PM                    => {
+    'Term::ExtendedColor'      => '0',
+    'File::LsColor'            => '0',
+    'CPAN::Uploader'           => '0',
+    'File::Basename'           => '0',
+    'Module::Extract::VERSION' => '0',
+    'File::Find::Rule'         => '0',
   },
-  MAN1PODS                => { },
-  dist                    => { COMPRESS => q{gzip -9f},    SUFFIX => q{gz}, },
-  clean                   => { FILES    => q{},                  },
+  MAN1PODS                     => { },
+  dist                         => { COMPRESS => q{gzip -9f},    SUFFIX => q{gz}, },
+  clean                        => { FILES    => q{},                  },
 );
 
 sub WriteMakefile1 {
