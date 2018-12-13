@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 # vim: ft=perl:fdm=marker:fmr=#<,#>:fen:et:sw=2:
+package App::makedist;
+
 use strict;
 use warnings FATAL => 'all';
 use vars     qw($VERSION);
@@ -7,7 +9,7 @@ use autodie  qw(:all);
 
 #< init
 
-$VERSION = '0.012';
+$VERSION = '0.013';
 
 sub usage {
   pod2usage(
@@ -155,7 +157,7 @@ sub verify_manifest { #<
 
 
 
-sub config_init { # XXX
+sub config_init { #< config
   my $config;
   if(-f "$ENV{XDG_CONFIG_HOME}/makedist/makedist.conf") {
     $config = "$ENV{XDG_CONFIG_HOME}/makedist/makedist.conf";
@@ -169,6 +171,7 @@ sub config_init { # XXX
   require($config);
   warn "$@" if $@;
 }
+#>
 
 
 sub ok {
