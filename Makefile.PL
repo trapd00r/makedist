@@ -10,7 +10,7 @@ WriteMakefile1(
     },
   },
 
-  NAME                         => q{makedist},
+  NAME                         => q{App::makedist},
   AUTHOR                       => q{Magnus Woldrich <m@japh.se>},
   ABSTRACT                     => q{automake a distribution for upload to cpan},
   VERSION_FROM                 => q{bin/makedist},
@@ -25,6 +25,13 @@ WriteMakefile1(
     'File::Basename'           => '0',
     'Module::Extract::VERSION' => '0',
     'File::Find::Rule'         => '0',
+  },
+  META_ADD                     => {
+    provides => {
+      'App::makedist' => {
+        file => 'bin/makedist',
+      },
+    },
   },
   MAN1PODS                     => { },
   dist                         => { COMPRESS => q{gzip -9f},    SUFFIX => q{gz}, },
