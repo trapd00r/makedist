@@ -9,7 +9,7 @@ use autodie  qw(:all);
 
 #< init
 
-$VERSION = '0.024';
+$VERSION = '0.026';
 
 sub usage {
   pod2usage(
