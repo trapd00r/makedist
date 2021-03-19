@@ -9,7 +9,7 @@ use autodie  qw(:all);
 
 #< init
 
-$VERSION = '0.026';
+$VERSION = '0.028';
 
 sub usage {
   pod2usage(
@@ -191,7 +191,7 @@ sub config_init { #< config
     $config = "$ENV{HOME}/.makedist.conf";
   }
   else {
-    print "makedist: no configuratino file found.\n";
+    print "makedist: no configuration file found.\n";
   }
   require($config);
   warn "$@" if $@;
