@@ -24,12 +24,15 @@ WriteMakefile1(
     glob("bin/*"),
   ],
   PREREQ_PM                    => {
-    'Term::ExtendedColor'      => '0',
-    'File::LsColor'            => '0',
     'CPAN::Uploader'           => '0',
     'File::Basename'           => '0',
-    'Module::Extract::VERSION' => '0',
+    'File::Copy::Recursive'    => '0',
     'File::Find::Rule'         => '0',
+    'File::LsColor'            => '0',
+    'File::Path'               => '0',
+    'Module::Extract::VERSION' => '0',
+    'Term::ExtendedColor'      => '0',
+    
   },
   META_ADD                     => {
     provides => {
